@@ -1,19 +1,29 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, {Component} from 'react';  
+import {StyleSheet, Text, View} from 'react-native';  
+      
+import Constants from 'expo-constants';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+import NavigationTabs from './NavigationTabs';  
+      
+export default class App extends Component{  
+    render(){  
+        return(  
+            <View style={styles.mainContainer}> 
+                <View>
+                    <Text style={styles.headerText}>NearMePedia.</Text>    
+                </View> 
+                <NavigationTabs />
+            </View>  
+        )  
+    }  
+}  
+const styles = StyleSheet.create({  
+    mainContainer: {
+        flex: 1,
+        backgroundColor: "#B0E0E6",
+        paddingTop: Constants.statusBarHeight
+        },
+    headerText:{  
+        fontWeight: 'bold'
+    }  
+});  
