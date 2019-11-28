@@ -5,6 +5,8 @@ import Constants from 'expo-constants';
 
 import NavigationTabs from './NavigationTabs';  
       
+//AAA
+
 export default class App extends Component{  
     render(){  
         return(  
