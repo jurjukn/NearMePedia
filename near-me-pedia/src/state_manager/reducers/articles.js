@@ -1,12 +1,10 @@
 const articlesReducer = (state=[], action) => {
     switch(action.type){
         case 'ASSIGN_ARTICLES':
-            return state=action.articles
+            return action.payload
         default:
             return state
     }
-    
-    return state
 }
 
 export default articlesReducer

@@ -1,17 +1,16 @@
-import React, {Component} from 'react';  
-
-import store from './src/state_manager/store'
+import React from 'react';  
 import { Provider } from 'react-redux'
 
+import store from './src/state_manager/store'
 import NearMePedia from './src/NearMePedia'
-      
-export default class App extends Component{  
 
-    render(){  
-        return(  
-            <Provider store={store}>
-                <NearMePedia />
-            </Provider>
-        )  
-    }  
-}  
+const App = () => {
+    return( 
+        <Provider store={store}>
+            {console.log(store)}
+            <NearMePedia />
+        </Provider>
+    )  
+}
+
+export default App
