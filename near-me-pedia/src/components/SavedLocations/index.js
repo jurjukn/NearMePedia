@@ -1,14 +1,15 @@
 import React from 'react';
-import { Text, View, Button } from 'react-native';
+import { View } from 'react-native';
 
-class LocationsScreen extends React.Component {
-    render() {
+import { AddLocation } from './AddLocation'
+
+const LocationsScreen = () => {
+
       return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <Text>My saved locations screen</Text>
+          <AddLocation />
         </View>
-      );
-    }
+      )
   }
 
 export default LocationsScreen
