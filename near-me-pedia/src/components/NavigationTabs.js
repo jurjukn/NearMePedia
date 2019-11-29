@@ -3,7 +3,6 @@ import { Text, View, Button } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
 
-import { connect } from 'react-redux'
 
 import NearbyLocationsScreen from './NearbyArticles'
 import SavedArticlesScreen from './SavedArticles'
