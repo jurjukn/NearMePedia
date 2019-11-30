@@ -1,5 +1,3 @@
-import React from 'react';
-import { Text, View, Button } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
 
@@ -15,7 +13,7 @@ const AppNavigator = createMaterialTopTabNavigator(
       Articles: SavedArticlesScreen
   },  
   {  
-      tabBarOptions: {  
+      tabBarOptions: { 
           activeTintColor: 'white',  
           showIcon: true,  
           showLabel:true,  

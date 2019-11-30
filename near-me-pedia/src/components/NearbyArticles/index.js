@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Text, View } from 'react-native';
 
-import { useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
 import { assignArticles } from './../../state_manager/actions'
 
@@ -9,8 +9,10 @@ import { DisplayArticles } from './DisplayArticles'
 
 const NearbyLocationsScreen = () => {
 
-    const gscoord1 = "46.492550"
-    const gscoord2 = "11.320850"
+    const coords = useSelector(state=>state.startCoordinates)
+
+    const longitude = coords.longitude
+    const latitude = coords.latitude
 
     const dispatch = useDispatch();
 
@@ -19,7 +21,7 @@ const NearbyLocationsScreen = () => {
         var params = {
             action: "query",
             list: "geosearch",
-            gscoord: gscoord1+"|"+gscoord2,
+            gscoord: latitude+"|"+longitude,
             gsradius: "10000",
             gslimit: "200",
             format: "json"
@@ -37,11 +39,11 @@ const NearbyLocationsScreen = () => {
             })
             .catch(function(error){console.log(error);});
 
-    }, [gscoord1, gscoord2])
+    }, [latitude, longitude])
 
     return(
         <View style={{ flex: 1 }}>
-            <Text>gscoord1: {gscoord1} gscoord2: {gscoord2}</Text>
+            <Text>latitude: {latitude} longitude: {longitude}</Text>
             <Text>Articles close to starting point:</Text>
             <DisplayArticles />
         </View>
