@@ -9,7 +9,6 @@ import { addArticle } from './../../state_manager/actions'
 const Item = ({ title, distance, article }) => {
 
     const dispatch = useDispatch();
-
     const transformedToLink = title.split(' ').join('_');
     return (
         <View style={styles.item}>

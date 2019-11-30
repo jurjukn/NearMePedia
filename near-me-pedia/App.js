@@ -7,7 +7,6 @@ import NearMePedia from './src/NearMePedia'
 const App = () => {
     return( 
         <Provider store={store}>
-            {console.log(store)}
             <NearMePedia />
         </Provider>
     )  

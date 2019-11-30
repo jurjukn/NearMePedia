@@ -2,14 +2,17 @@ import React from 'react';
 import { View } from 'react-native';
 
 import { AddLocation } from './AddLocation'
+import { DisplaySavedLocations } from './DisplaySavedLocations'
 
-const LocationsScreen = () => {
 
-      return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <AddLocation />
-        </View>
-      )
-  }
+const LocationsScreen = (props) => {
+
+  return (
+    <View style={{ flex:1 }}>
+      <AddLocation />
+      <DisplaySavedLocations navigate = {props.navigation} />
+    </View>
+  )
+}
 
 export default LocationsScreen
