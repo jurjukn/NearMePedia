@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import { assignArticles } from './../../state_manager/actions'
 
-import { DisplayArticles } from './DisplayArticles'
+import { DisplayArticles } from './nearbyArticlesList/DisplayArticles'
 
 const NearbyLocationsScreen = () => {
 
