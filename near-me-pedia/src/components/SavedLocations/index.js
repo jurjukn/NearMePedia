@@ -9,8 +9,7 @@ import { useDispatch } from 'react-redux'
 import { assignStartCoordinates } from './../../state_manager/actions'
 
 import { AddLocation } from './AddLocation'
-import { DisplaySavedLocations } from './DisplaySavedLocations'
-
+import { DisplaySavedLocations } from './locationsList/DisplaySavedLocations'
 
 const LocationsScreen = (props) => {
 
