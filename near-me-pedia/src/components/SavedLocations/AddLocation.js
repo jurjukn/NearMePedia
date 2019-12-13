@@ -14,15 +14,13 @@ export const AddLocation = () => {
     const dispatch = useDispatch()
     const [value, setValue] = useState('')
 
-    _getLocationAsync = async (address) => {
+    _getAddressCoordinatessync = async (address) => {
         let { status } = await Permissions.askAsync(Permissions.LOCATION);
         if (status !== 'granted') {
             console.log('Permission to access location was denied')
             return
         }
         const json = await Location.geocodeAsync(address)
-        console.log(json)
-        console.log(json.length)
         if (json.length === 0){
           alert("Could not find address " + address )
           return
@@ -37,11 +35,10 @@ export const AddLocation = () => {
 
     addTodo = () => {
       if (value.length > 0) {
-        console.log("Convert address (value) to coordinates using goecode API, for now adding hardcoded coords")
         if (Platform.OS === 'android' && !Constants.isDevice) {
           console.log('Oops, this will not work on Sketch in an Android emulator. Try it on your device!')
         } else {
-            _getLocationAsync(value)
+          _getAddressCoordinatessync(value)
         }   
       }
 	  }
