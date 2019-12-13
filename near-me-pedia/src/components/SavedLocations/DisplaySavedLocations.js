@@ -5,7 +5,7 @@ import Constants from 'expo-constants'
 import { useSelector, useDispatch } from 'react-redux'
 import { assignStartCoordinates } from './../../state_manager/actions'
 
-const Item = ({ latitude, longitude, coordinates, navigate }) => {
+const Item = ({ latitude, longitude, coordinates, address, navigate }) => {
 
     const dispatch = useDispatch()
     const assignCoordsAndNavigate = (coordinates, navigate) =>{
@@ -15,9 +15,9 @@ const Item = ({ latitude, longitude, coordinates, navigate }) => {
     return (
         <View style={styles.item}>
             <View onStartShouldSetResponder={()=>assignCoordsAndNavigate(coordinates, navigate)}>
-                <Text style={styles.title}>{latitude} : {longitude} </Text>
+                <Text style={styles.title}> {address} </Text>
             </View>
-            <Text>Address should be display above</Text>
+            <Text>{latitude} : {longitude}</Text>
         </View>
     )
 }
@@ -31,14 +31,15 @@ export const DisplaySavedLocations = (props) => {
             renderItem={
                 ({ item }) => 
                     <Item 
-                        longitude={item.longitude} 
-                        latitude={item.latitude} 
-                        key={item.latitude + item.longitude} 
-                        coordinates = {item}
+                        longitude={item.coordinates.longitude} 
+                        latitude={item.coordinates.latitude} 
+                        key={item.coordinates.latitude + item.coordinates.longitude} 
+                        coordinates = {item.coordinates}
+                        address = {item.address}
                         navigate = {props.navigate}
                     />
             }
-            keyExtractor={item => (item.latitude + item.longitude)}
+            keyExtractor={item => (item.coordinates.latitude + item.coordinates.longitude)}
         />
     )
 }
