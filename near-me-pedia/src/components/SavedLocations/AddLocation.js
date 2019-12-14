@@ -5,7 +5,7 @@ import Constants from 'expo-constants'
 import * as Location from 'expo-location'
 import * as Permissions from 'expo-permissions'
 
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { addLocation } from './../../state_manager/actions'
 
@@ -13,6 +13,7 @@ export const AddLocation = () => {
 
     const dispatch = useDispatch()
     const [value, setValue] = useState('')
+    const savedLocations = useSelector(state => state.savedLocations)
 
     _getAddressCoordinatessync = async (address) => {
         let { status } = await Permissions.askAsync(Permissions.LOCATION);
@@ -29,8 +30,18 @@ export const AddLocation = () => {
         const longitude = (json[0].longitude).toString()   
         const coords = {latitude: latitude, longitude: longitude}
         const location = {address: address, coordinates: coords}
-        dispatch(addLocation(location))
-        setValue("")
+
+        const list = savedLocations.filter((item) => 
+        (location.coordinates.latitude === item.coordinates.latitude 
+          && location.coordinates.latitude === item.coordinates.latitude)
+        )
+        if(list.length !== 0){
+          alert("Location " + location.address + " already in list")
+        }
+        else{
+          dispatch(addLocation(location))
+          setValue("")
+        }
     }
 
     addTodo = () => {

@@ -7,6 +7,7 @@ import { Item } from './Item'
 export const DisplaySavedLocations = (props) => {
 
     const savedLocations = useSelector(state => state.savedLocations)
+    
     return(
         <FlatList
             data={savedLocations}
