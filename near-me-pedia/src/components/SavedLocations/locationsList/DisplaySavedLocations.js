@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FlatList } from 'react-native';
 
 import { useSelector } from 'react-redux'
@@ -7,6 +7,9 @@ import { Item } from './Item'
 export const DisplaySavedLocations = (props) => {
 
     const savedLocations = useSelector(state => state.savedLocations)
+    useEffect(()=>{
+        console.log("saved locations changed")
+     }, savedLocations)
     
     return(
         <FlatList
@@ -20,6 +23,7 @@ export const DisplaySavedLocations = (props) => {
                         coordinates = {item.coordinates}
                         address = {item.address}
                         navigate = {props.navigate}
+                        location = {item}
                     />
             }
             keyExtractor={item => (item.coordinates.latitude + item.coordinates.longitude)}

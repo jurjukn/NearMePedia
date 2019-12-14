@@ -1,16 +1,22 @@
 import React,{ useState } from 'react';
-import { Text, View, StyleSheet, Linking, Platform } from 'react-native';
+import { Text, View, StyleSheet, Linking, Platform, Button } from 'react-native';
 
 import Constants from 'expo-constants';
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
 
+import { useSelector, useDispatch } from 'react-redux'
+
+import { assignArticles } from './../../../state_manager/actions'
+
 import getDistance from 'geolib/es/getDistance'
 
 
-export const Item = ({ articleLat, articleLong, title }) => {
+export const Item = ({ article, articleLat, articleLong, title }) => {
 
     const [currentCoordinates, setCurrentCoordinates] = useState({})
+    const savedArticles = useSelector(state => state.savedArticles)
+    const dispatch = useDispatch();
 
     _getMyLocationAsync = async () => {
         let { status } = await Permissions.askAsync(Permissions.LOCATION);
@@ -33,6 +39,11 @@ export const Item = ({ articleLat, articleLong, title }) => {
         }
     }
 
+    const deleteArticle = () => {
+        const newArticlesList = savedArticles.filter((item) => (item.pageid !== article.pageid))
+        dispatch(assignArticles(newArticlesList))
+    }
+
     const transformedToLink = title.split(' ').join('_');
     const distMeters = getDistance(currentCoordinates, { latitude: articleLat, longitude: articleLong})
     const distKilometers = distMeters/1000
@@ -44,6 +55,7 @@ export const Item = ({ articleLat, articleLong, title }) => {
                 <Text style={styles.title}>{title} </Text>
             </View>
             <Text>Distance: {distKilometers} km</Text>
+            <Button title="Delete" onPress={()=>deleteArticle()} />
         </View>
     )
 }

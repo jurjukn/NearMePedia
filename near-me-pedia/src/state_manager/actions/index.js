@@ -11,3 +11,17 @@ export const addLocation = (coordinates) => {
         payload: coordinates
     }
 }
+
+export const assignArticles = (articles) => {
+    return {
+        type: 'ASSIGN_ARTICLES',
+        payload: articles
+    }
+}
+
+export const assignLocations = (locations) => {
+    return {
+        type: 'ASSIGN_LOCATIONS',
+        payload: locations
+    }
+}
