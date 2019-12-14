@@ -36,7 +36,7 @@ const LocationsScreen = (props) => {
     <View style={{ flex:1 }}>
       <AddLocation />
       <Button title='Current Location' color="red" onPress={()=>assignCurrentLocationAndNavigate()} />
-      <DisplaySavedLocations navigate = {props.navigation} />
+      <DisplaySavedLocations navigate={props.navigation} />
     </View>
   )
 }
