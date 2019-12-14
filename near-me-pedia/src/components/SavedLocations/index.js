@@ -5,15 +5,10 @@ import Constants from 'expo-constants';
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
 
-import { useDispatch } from 'react-redux'
-import { assignStartCoordinates } from './../../state_manager/actions'
-
 import { AddLocation } from './AddLocation'
 import { DisplaySavedLocations } from './locationsList/DisplaySavedLocations'
 
 const LocationsScreen = (props) => {
-
-  const dispatch = useDispatch()
 
   _getLocationAsync = async () => {
     let { status } = await Permissions.askAsync(Permissions.LOCATION);
@@ -25,7 +20,8 @@ const LocationsScreen = (props) => {
       latitude: location.coords.latitude,
       longitude: location.coords.longitude
     }
-    dispatch(assignStartCoordinates(coords))
+
+    props.navigation.navigate('Nearby', {coordinates: coords})
   }
 
   const assignCurrentLocationAndNavigate = () => {
@@ -33,7 +29,6 @@ const LocationsScreen = (props) => {
       console.log('Oops, this will not work on Sketch in an Android emulator. Try it on your device!')
     } else {
       _getLocationAsync()
-      props.navigation.navigate('Nearby')
     }
   }
 

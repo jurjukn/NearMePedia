@@ -1,16 +1,11 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-import { useDispatch } from 'react-redux'
-import { assignStartCoordinates } from '../../../state_manager/actions'
-
 export const Item = ({ latitude, longitude, coordinates, address, navigate }) => {
 
-    const dispatch = useDispatch()
 
     const assignCoordsAndNavigate = (coordinates, navigate) =>{
-        dispatch(assignStartCoordinates(coordinates))
-        navigate.navigate('Nearby')
+        navigate.navigate('Nearby',{coordinates: coordinates})
     }
     
     return (
