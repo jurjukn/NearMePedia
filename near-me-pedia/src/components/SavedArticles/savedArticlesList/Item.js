@@ -1,9 +1,5 @@
-import React,{ useState } from 'react';
-import { Text, View, StyleSheet, Linking, Platform, Button } from 'react-native';
-
-import Constants from 'expo-constants';
-import * as Location from 'expo-location';
-import * as Permissions from 'expo-permissions';
+import React from 'react';
+import { Text, View, StyleSheet, Linking, Button } from 'react-native';
 
 import { useSelector, useDispatch } from 'react-redux'
 
@@ -12,33 +8,10 @@ import { assignArticles } from './../../../state_manager/actions'
 import getDistance from 'geolib/es/getDistance'
 
 
-export const Item = ({ article, articleLat, articleLong, title }) => {
+export const Item = ({ currentCoordinates, article, articleLat, articleLong, title }) => {
 
-    const [currentCoordinates, setCurrentCoordinates] = useState({})
     const savedArticles = useSelector(state => state.savedArticles)
     const dispatch = useDispatch();
-
-    _getMyLocationAsync = async () => {
-        let { status } = await Permissions.askAsync(Permissions.LOCATION);
-        if (status !== 'granted') {
-          console.log('Permission to access location was denied')
-        }
-        let location = await Location.getCurrentPositionAsync({});
-        const coords = {
-          latitude: location.coords.latitude,
-          longitude: location.coords.longitude
-        }
-        setCurrentCoordinates(coords)
-    }
-    
-    const assignCurrentLocationAndNavigate = () => {
-        if (Platform.OS === 'android' && !Constants.isDevice) {
-            console.log('Oops, this will not work on Sketch in an Android emulator. Try it on your device!')
-        } else {
-            _getMyLocationAsync()
-        }
-    }
-
     const deleteArticle = () => {
         const newArticlesList = savedArticles.filter((item) => (item.pageid !== article.pageid))
         dispatch(assignArticles(newArticlesList))
@@ -48,7 +21,6 @@ export const Item = ({ article, articleLat, articleLong, title }) => {
     const distMeters = getDistance(currentCoordinates, { latitude: articleLat, longitude: articleLong})
     const distKilometers = distMeters/1000
     
-    assignCurrentLocationAndNavigate()
     return (
         <View style={styles.item}>
             <View onStartShouldSetResponder={() => Linking.openURL('https://en.wikipedia.org/wiki/'+transformedToLink)}>
