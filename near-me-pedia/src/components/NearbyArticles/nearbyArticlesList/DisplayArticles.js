@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { FlatList } from 'react-native';
+import { FlatList, View, Text } from 'react-native';
 
 import { Item } from './Item'
 
 export const DisplayArticles = (props) => {
 
-    const [articlesTest, setArticlesTest] = useState([])
+    const [articlesTest, setArticlesTest] = useState(null)
+    const [errorMsg, setErrorMsg] = useState(null)
 
     const coords = props.coordinates
     const longitude = coords.longitude
     const latitude = coords.latitude
+
+    useEffect(()=>{
+        fetchApi()
+     }, [latitude, longitude])
 
     async function fetchApi(){
         var url = "https://en.wikipedia.org/w/api.php"; 
@@ -29,19 +34,30 @@ export const DisplayArticles = (props) => {
                 var pages = response.query.geosearch;
                 setArticlesTest(pages)
             })
-            .catch(function(error){console.log(error);});
+            .catch(function(error){
+                console.log(error)
+                setErrorMsg(error)
+            });
     }
 
-    useEffect(()=>{
-       fetchApi()
-
-    }, [latitude, longitude])
+    let text = "Waiting.."
+    if(errorMsg) {
+        text = errorMsg
+    }
+    else if (articlesTest){
+        text = "Articles displayed"
+    }
 
     return(
-        <FlatList
-            data={articlesTest}
-            renderItem={({ item }) => <Item title={item.title} distance={item.dist} key={item.title} article={item} />}
-            keyExtractor={item => item.title}
-        />
+        <View>
+            <Text>{text}</Text>
+            { articlesTest &&
+                <FlatList
+                    data={articlesTest}
+                    renderItem={({ item }) => <Item title={item.title} distance={item.dist} key={item.title} article={item} />}
+                    keyExtractor={item => item.title}
+                />
+            }
+        </View>
     )
 }
