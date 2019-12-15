@@ -11,7 +11,7 @@ export const DisplayArticles = (props) => {
     const longitude = coords.longitude
     const latitude = coords.latitude
 
-    useEffect(()=>{
+    async function fetchApi(){
         var url = "https://en.wikipedia.org/w/api.php"; 
         var params = {
             action: "query",
@@ -30,6 +30,10 @@ export const DisplayArticles = (props) => {
                 setArticlesTest(pages)
             })
             .catch(function(error){console.log(error);});
+    }
+
+    useEffect(()=>{
+       fetchApi()
 
     }, [latitude, longitude])
 

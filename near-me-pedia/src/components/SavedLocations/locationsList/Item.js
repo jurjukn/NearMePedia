@@ -20,7 +20,6 @@ export const Item = ({ latitude, longitude, coordinates, address, navigate, loca
                 item.coordinates.latitude !== location.coordinates.latitude
                 && item.coordinates.longitude !== location.coordinates.longitude
             )
-            
         )
         dispatch(assignLocations(newLocationsList))
     }
