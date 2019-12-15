@@ -40,16 +40,16 @@ export const DisplayArticles = (props) => {
             });
     }
 
-    let text = "Waiting.."
+    let text = "Loading..."
     if(errorMsg) {
         text = errorMsg
     }
     else if (articlesTest){
-        text = "Articles displayed"
+        text = ""
     }
     return(
         <View>
-            <Text>{text}</Text>
+            <Text style={{textAlign:"center", color:"white"}}>{text}</Text>
             { articlesTest &&
                 <FlatList
                     data={articlesTest}

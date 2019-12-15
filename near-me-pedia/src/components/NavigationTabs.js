@@ -14,6 +14,7 @@ const AppNavigator = createMaterialTopTabNavigator(
   },  
   {  
       tabBarOptions: { 
+          
           activeTintColor: 'white',  
           showIcon: true,  
           showLabel:true,  
@@ -21,7 +22,7 @@ const AppNavigator = createMaterialTopTabNavigator(
               backgroundColor:'blue'  
           }  
       },  
-  }  
+  }
 ) 
 
 export default createAppContainer(AppNavigator)
