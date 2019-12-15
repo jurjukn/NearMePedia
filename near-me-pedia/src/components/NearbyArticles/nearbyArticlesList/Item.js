@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View, StyleSheet, Linking, Button } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux'
 
-import { addArticle, assignArticles } from './../../../state_manager/actions'
+import { addArticle } from './../../../state_manager/actions'
 
 export const Item = ({ title, distance, article }) => {
 
@@ -16,10 +16,7 @@ export const Item = ({ title, distance, article }) => {
             alert("Article " + articleToSave.title +" is already in the list")
         }
         else{
-            // const newList = [...savedArticles, article]
             dispatch(addArticle(article))
-            // console.log(savedArticles)
-            // dispatch(assignArticles(newList))
         }
     }
 

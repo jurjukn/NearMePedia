@@ -3,9 +3,9 @@ import { Text, View, StyleSheet, Linking, Button } from 'react-native';
 
 import { useSelector, useDispatch } from 'react-redux'
 
-import { assignArticles } from './../../../state_manager/actions'
-
 import getDistance from 'geolib/es/getDistance'
+
+import { assignArticles } from './../../../state_manager/actions'
 
 
 export const Item = ({ currentCoordinates, article, articleLat, articleLong, title }) => {
