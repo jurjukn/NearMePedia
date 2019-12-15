@@ -24,15 +24,14 @@ export const DisplaySavedArticles = () => {
         }
      }, [])
     
-     _getLocationAsync = async () => {
+    _getLocationAsync = async () => {
         let { status } = await Permissions.askAsync(Permissions.LOCATION);
         if (status !== 'granted') {
             setErrorMsg('Permission to access location was denied')
         }
-    
-        let location = await Location.getCurrentPositionAsync({});
+        let location = await Location.getCurrentPositionAsync({})
         setCurrentCoordinates({latitude: location.coords.latitude, longitude: location.coords.longitude})
-      };
+    }
 
     let text = "Waiting.."
     if(errorMsg) {
