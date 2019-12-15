@@ -16,7 +16,6 @@ const NearbyLocationsScreen = (props) => {
             ):(
                 <View> 
                     <Text>latitude: {coordinates.latitude} longitude: {coordinates.longitude}</Text>
-                    <Text>Articles close to starting point:</Text>
                     <DisplayArticles coordinates={coordinates} />
                 </View>
             )}

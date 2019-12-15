@@ -22,13 +22,11 @@ const LocationsScreen = (props) => {
   }, [])
 
   _getLocationAAsync = async () => {
-    console.log("Hello from locations ")
     let { status } = await Permissions.askAsync(Permissions.LOCATION);
     if (status !== 'granted') {
         setErrorMsg('Permission to access location was denied')
     }
     let location = await Location.getCurrentPositionAsync({})
-    console.log(location)
     setCurrentCoordinates({latitude: location.coords.latitude, longitude: location.coords.longitude})
   }
 

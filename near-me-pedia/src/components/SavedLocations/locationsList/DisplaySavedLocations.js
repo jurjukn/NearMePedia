@@ -7,10 +7,6 @@ import { Item } from './Item'
 export const DisplaySavedLocations = (props) => {
 
     const savedLocations = useSelector(state => state.savedLocations)
-    // useEffect(()=>{
-    //     console.log("saved locations changed")
-        
-    //  }, savedLocations)
     
     return(
         <FlatList

@@ -47,7 +47,6 @@ export const DisplayArticles = (props) => {
     else if (articlesTest){
         text = "Articles displayed"
     }
-
     return(
         <View>
             <Text>{text}</Text>
