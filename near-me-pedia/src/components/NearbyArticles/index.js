@@ -12,7 +12,7 @@ const NearbyLocationsScreen = (props) => {
         <View style={{ flex: 1, backgroundColor:"#E6E6FA" }}>
             {coordinates === 'NO-COORDS'? (
                 <View>
-                    <Text style={{ textAlign:"center", color:"white" }}>No coordinates selected</Text>
+                    <Text style={{ textAlign:"center", color:"blue" }}>No coordinates selected</Text>
                 </View>
             ):(
                 <View> 

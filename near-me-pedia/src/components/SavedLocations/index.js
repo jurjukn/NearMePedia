@@ -7,6 +7,7 @@ import * as Permissions from 'expo-permissions';
 
 import { AddLocation } from './AddLocation'
 import { DisplaySavedLocations } from './locationsList/DisplaySavedLocations'
+import { CurrentCoordinates } from './../CurrentCoordinates'
 
 const LocationsScreen = (props) => {
 
@@ -35,15 +36,19 @@ const LocationsScreen = (props) => {
       text = errorMsg
   }
   else if (currentCoordinates){
-      text = JSON.stringify(currentCoordinates)
+      text = ""
   } 
   return (
-    <View style={{ flex:1 }}>
-      <AddLocation />
-      <Text>{text}</Text>
-      {(currentCoordinates) &&
-        <Button title='Current Location' color="red" onPress={()=>props.navigation.navigate('Nearby', {coordinates: currentCoordinates})} />
+    <View style={{ flex:1, backgroundColor:"#E6E6FA" }}>
+      {(currentCoordinates) ? (
+          <View onStartShouldSetResponder={() => props.navigation.navigate('Nearby', {coordinates: currentCoordinates})}>
+            <CurrentCoordinates coordinates={currentCoordinates} />
+          </View>
+        ) : (
+          <Text style={{ textAlign:"center", color:"blue" }}>{text}</Text>
+        )
       }
+      <AddLocation />
       <DisplaySavedLocations navigate={props.navigation} />
     </View>
   )

@@ -7,9 +7,7 @@ import NavigationTabs from './components/NavigationTabs';
 const NearMePedia = () => {
     return(  
         <View style={styles.mainContainer}> 
-            <View>
-                <Text style={styles.headerText}>NearMePedia.</Text>    
-            </View> 
+            <Text style={styles.headerText}>NearMePedia.</Text>    
             <NavigationTabs />
         </View> 
     )  
@@ -18,11 +16,13 @@ const NearMePedia = () => {
 const styles = StyleSheet.create({  
     mainContainer: {
         flex: 1,
-        backgroundColor: "#B0E0E6",
+        backgroundColor: "blue",
         paddingTop: Constants.statusBarHeight
         },
     headerText:{  
-        fontWeight: 'bold'
+        fontSize: 28,
+        color: "white",
+        padding:5
     }  
 });  
 
