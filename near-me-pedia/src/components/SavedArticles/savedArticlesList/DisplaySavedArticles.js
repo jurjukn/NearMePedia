@@ -6,8 +6,9 @@ import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
 
 import { useSelector } from 'react-redux'
-import { Item } from './Item'
 
+import { Item } from './Item'
+import { CurrentCoordinates } from './../../CurrentCoordinates'
 
 export const DisplaySavedArticles = () => {
 
@@ -42,20 +43,24 @@ export const DisplaySavedArticles = () => {
         text = errorMsg
     }
     else if (currentCoordinates){
-        text = JSON.stringify(currentCoordinates)
-        var coords = text
+        text=""
     } 
     return(
-        <View>
-            <View>
-                <Text>{text}</Text>
-            </View>
-            {(currentCoordinates) &&
-                <FlatList
-                    data={savedArticles}
-                    renderItem={({ item }) => <Item currentCoordinates={currentCoordinates} article={item} articleLat={item.lat} articleLong={item.lon} title={item.title} key={item.title} />}
-                    keyExtractor={item => item.title}
-                />
+        <View style={{flex:1}}>
+            {(currentCoordinates)? (
+                <View style={{flex:1}}>
+                    <CurrentCoordinates coordinates={currentCoordinates} />
+                    <FlatList
+                        data={savedArticles}
+                        renderItem={({ item }) => <Item currentCoordinates={currentCoordinates} article={item} articleLat={item.lat} articleLong={item.lon} title={item.title} key={item.title} />}
+                        keyExtractor={item => item.title}
+                    />
+                </View>
+            ) : (
+                <View>
+                    <Text style={{ textAlign:"center", color:"blue" }}>{text}</Text>
+                </View>
+            )
             } 
         </View>
     )
