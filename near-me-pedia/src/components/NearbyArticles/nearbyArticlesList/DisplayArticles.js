@@ -49,7 +49,7 @@ export const DisplayArticles = (props) => {
     }
     return(
         <View>
-            <Text style={{textAlign:"center", color:"white"}}>{text}</Text>
+            <Text style={{textAlign:"center", color:"blue"}}>{text}</Text>
             { articlesTest &&
                 <FlatList
                     data={articlesTest}
