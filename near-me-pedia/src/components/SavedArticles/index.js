@@ -6,8 +6,7 @@ import { DisplaySavedArticles } from './savedArticlesList/DisplaySavedArticles'
 const ArticlesScreen = () => {
   
   return (
-    <View style={{ flex: 1 }}>
-      <Text>Articles according to starting coordinates</Text>
+    <View style={{ flex: 1, backgroundColor:"#E6E6FA"}}>
       <DisplaySavedArticles />
     </View>
   );
