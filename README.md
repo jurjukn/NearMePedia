@@ -3,4 +3,4 @@ Second react-native app
 
 Using React hooks and Redux for state management
 
-App is tested and fully works on Android device
+App is tested on Android device
